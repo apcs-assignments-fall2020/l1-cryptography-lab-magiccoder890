@@ -1,14 +1,77 @@
 import java.util.Scanner;
 
 public class Vigenere {
-    public static String encryptVigenere(String message, String key) {
-        return message;
-        // REPLACE THIS WITH YOUR CODE
+        public static String encryptVigenere(String message, String key) {
+        String str = "";
+        key = key.toUpperCase();
+        String new_message = message.toUpperCase();
+        int space = 0;
+        int New_num = 0;
+        for (int i = 0; i < new_message.length(); i++) {
+            char every_word = new_message.charAt(i);
+            New_num = (int)every_word + ((int)key.charAt((i-space) % key.length()) - 65);
+            if ((New_num > 90)&& (64 < (int)every_word && (int)every_word < 91)) {
+                if (Character.isLowerCase(message.charAt(i))){
+                    New_num = New_num + 32 - 26;
+                }
+                else {
+                    New_num -= 26;
+                }
+                str += (char) New_num;
+            }
+            else if (64 < (int)every_word && (int)every_word < 91){
+                if (Character.isLowerCase(message.charAt(i))){
+                    New_num += 32;
+                    str += (char) New_num;
+                }
+                else {
+                    str += (char) New_num;
+                }
+            }
+            else {
+                str += (char)every_word;
+                space += 1;
+            }
+        }
+        System.out.print(str);
+        return str;
     }
 
     public static String decryptVigenere(String message, String key) {
-        return message;
-        // REPLACE THIS WITH YOUR CODE
+        String str = "";
+        key = key.toUpperCase();
+        String new_message = message.toUpperCase();
+        int space = 0;
+        int New_num = 0;
+        for (int i = 0; i < new_message.length(); i++) {
+            char every_word = new_message.charAt(i);
+            New_num = (int)every_word - ((int)key.charAt((i-space) % key.length()) - 65);
+            if ((New_num < 65)&& (64 < (int)every_word && (int)every_word < 91)) {
+                if(Character.isLowerCase(message.charAt(i))) {
+                    New_num = New_num + 26 + 32;
+                    str += (char) New_num;
+                }
+                else {
+                    New_num += 26;
+                    str += (char) New_num;
+                }
+            }
+            else if (64 < (int)every_word && (int)every_word < 91){
+                if(Character.isLowerCase(message.charAt(i))) {
+                    New_num = New_num + 32;
+                    str += (char) New_num;
+                }
+                else {
+                    str += (char) New_num;
+                }
+            }
+            else {
+                str += (char)every_word;
+                space += 1;
+            }
+        }
+        System.out.print(str);
+        return str;
     }
 
 
