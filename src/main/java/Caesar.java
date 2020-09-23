@@ -42,6 +42,7 @@ public class Caesar {
     }
 
     public static String encryptCaesarKey(String message, int key) {
+        key %= 26;
         String str = "";
         for (int i = 0; i < message.length(); i++) {
             char every_word = message.charAt(i);
@@ -64,6 +65,7 @@ public class Caesar {
 
     public static String decryptCaesarKey(String message, int key) {
         String str = "";
+        key %= 26;
         for (int i = 0; i < message.length(); i++) {
             char every_word = message.charAt(i);
             int new_char = 0;
@@ -90,7 +92,6 @@ public class Caesar {
                 String message = scanner.nextLine();
                 System.out.print("Please tell out how many key you want to space");
                 int key = scanner.nextInt() % 26;
-                key %= 26;
                 encryptCaesarKey(message, key);
             }
             else {
@@ -98,7 +99,6 @@ public class Caesar {
                 String message = scanner.nextLine();
                 System.out.print("Please tell out how many key you want to space");
                 int key = scanner.nextInt();
-                key %= 26;
                 decryptCaesarKey(message, key);
             }
         }
